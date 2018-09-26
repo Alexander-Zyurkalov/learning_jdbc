@@ -1,8 +1,6 @@
 package com.lynda;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Main {
     private static final String USERNAME = "lyndacom";
@@ -10,8 +8,18 @@ public class Main {
     private static final String CONN_STRING =
             "jdbc:mysql://localhost/explorecalifornia?autoReconnect=true&useSSL=false";
     public static void main( String[] args ) throws SQLException{
-        try (Connection conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD)) {
+        try (
+            Connection conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM states")
+        ) {
             System.out.println("Connected");
+            rs.last();
+            rs.first();
+            rs.next();
+            System.out.println("Number of rows: "+ rs.getRow());
         } catch (SQLException e) {
             e.printStackTrace();
         }
