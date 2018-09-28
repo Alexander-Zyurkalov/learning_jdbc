@@ -7,7 +7,7 @@ public class Main {
     private static final String PASSWORD = "password";
     private static final String CONN_STRING =
             "jdbc:mysql://localhost/explorecalifornia?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
-    public static void main( String[] args ) throws SQLException{
+    public static void main( String[] args ) {
         try (
             Connection conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement(
