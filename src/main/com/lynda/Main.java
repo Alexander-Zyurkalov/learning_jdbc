@@ -6,7 +6,8 @@ public class Main {
     private static final String USERNAME = "lyndacom";
     private static final String PASSWORD = "password";
     private static final String CONN_STRING =
-            "jdbc:mysql://localhost/explorecalifornia?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
+            "jdbc:mysql://localhost/explorecalifornia?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true"+
+            "&useUnicode=true&characterEncoding=UTF-8";
     public static void main( String[] args ) {
         try (
             Connection conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
